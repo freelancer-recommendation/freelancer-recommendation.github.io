@@ -1,0 +1,13 @@
+A total of 3900 freelancers were chosen but finalizes with 3166 because of closed/deleted accounts
+preparing file with freelancers and their successful bids - 
+
+Picked total of 9721 Projects for final consideration
+
+
+Collaborative Filtering Mechanism:
+Used implicit data collection mechanism
+1. Item-Item Approach:
+https://mahout.apache.org/users/recommender/recommender-documentation.html
+
+2. User based approach:
+
