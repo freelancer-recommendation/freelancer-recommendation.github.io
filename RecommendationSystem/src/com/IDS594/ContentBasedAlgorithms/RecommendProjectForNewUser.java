@@ -120,15 +120,15 @@ public class RecommendProjectForNewUser {
 					}
 					String temp = "";
 					temp = skillsArray[skillCount];
-					boolean found = false;
+					int hit = 0;
 					for (int skill_num = 0; skill_num < skill; skill_num++){
 						if (temp.equalsIgnoreCase(skills[skill_num])){
 							skillIds[skillCount] = skill_num + 1;
-							found = true;
+							hit = 1;
 							break;
 						}
 					}
-					if (!found){
+					if (hit == 0){
 						skills[skill] = temp;
 						skillIds[skillCount] = skill + 1;
 						skill++;

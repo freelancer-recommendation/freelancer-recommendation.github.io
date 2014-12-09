@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.IOException;
 
 public class ContentBasedEvaluation {
 
@@ -67,7 +68,10 @@ public class ContentBasedEvaluation {
 				projectId++;
 			}
 			projectFile.close();//At this step I have all the projects stored in projectMatrix
-			
+			//Edit: Content is written to a file so that we can use it while performing CF Algorithms
+			String projects = "output/ProjectNames_For_CF.txt";
+			BufferedWriter projectNames_ForCF = new BufferedWriter(new FileWriter(projects));
+			writeToFile(projectNames_ForCF,projectId,projectMatrix);
 			//Now read content from SuccessfulBidsWithSkills file
 			//BufferedReader successfulBids = new BufferedReader(new FileReader("textFiles/SuccessfulBidsWithSkills.txt"));
 			BufferedReader successfulBids = new BufferedReader(new FileReader("textFiles/test.txt"));
@@ -82,9 +86,9 @@ public class ContentBasedEvaluation {
 					readTextContent = successfulBids.readLine();	
 				}
 				while((readTextContent != null) && (!readTextContent.contains("Name:"))){
-					if(readTextContent.equalsIgnoreCase("Wordpress theme modification->CSS,HTML,PHP,Wordpress")){
+					/*if(readTextContent.equalsIgnoreCase("Wordpress theme modification->CSS,HTML,PHP,Wordpress")){
 						System.out.println("blah");
-					}
+					}*/
 					String[] proj_Skills = readTextContent.split(":::");
 					String pName = proj_Skills[0];
 					String sSet = proj_Skills[1];
@@ -97,8 +101,10 @@ public class ContentBasedEvaluation {
 							foundAt = index;
 							break;
 						}
+						else{
+							projectMatrix[projectId] = pName;
+						}
 					}
-					projectMatrix[projectId] = pName;
 					//Read all skills individually
 					String[] skill_set = sSet.split(",");
 					for(int ind = 0; ind < skill_set.length; ind++){
@@ -156,7 +162,7 @@ public class ContentBasedEvaluation {
 					String temp = token[Subindex+1];
 					boolean found = false;
 					for (int subInd = 0; subInd < skill; subInd++){
-						//TODO: Change datastructure to arraylist at least to search
+						//TODO: Change data structure to arraylist at least to search
 						if (temp.equals(skills[subInd])){
 							user_Skill_Matrix[freelancerId][Subindex] = subInd + 1;
 							found = true;
@@ -173,6 +179,13 @@ public class ContentBasedEvaluation {
 				freelancerId++;
 			}
 			freelancerFile.close();//At this step I have all the freelancers stored in freelancerMatrix
+			//Edit: Content is written to a file so that we can use it while performing CF Algorithms
+			String freelancer_ForCF = "output/FreelancerNames_For_CF.txt";
+			String skills_ForCF = "output/SkillNames_For_CF.txt";
+			BufferedWriter freelancerNames_ForCF = new BufferedWriter(new FileWriter(freelancer_ForCF));
+			BufferedWriter skillNames_ForCF = new BufferedWriter(new FileWriter(skills_ForCF));
+			writeToFile(freelancerNames_ForCF,freelancerId,freelancerMatrix);
+			writeToFile(skillNames_ForCF,skill,skills);
 			successfulBids = new BufferedReader(new FileReader("textFiles/test.txt"));
 			readTextContent = null;
 			readTextContent = successfulBids.readLine();
@@ -284,6 +297,15 @@ public class ContentBasedEvaluation {
 			System.out.println("Exception in main function of RecommendProject"+e);
 		}
 		System.out.println("----Program done and exited----");
+	}
+	//Write Content to a file
+	private static void writeToFile(BufferedWriter bufferWriter,
+			int id, String[] matrix) throws IOException {
+		for (int index = 0 ; index < id; index++){
+			bufferWriter.write(matrix[index]+"\n");
+		}
+		bufferWriter.close();
+		
 	}
 	private static double[] initialize(int limit, double[] array) {
 		for (int ind = 0; ind < limit; ind++){
