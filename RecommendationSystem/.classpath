@@ -6,5 +6,11 @@
 	<classpathentry kind="lib" path="C:/Users/ThejaSwarup/Downloads/json-20090211.jar"/>
 	<classpathentry kind="lib" path="C:/Users/ThejaSwarup/Downloads/json-simple-1.1.1.jar"/>
 	<classpathentry kind="lib" path="C:/Users/ThejaSwarup/Downloads/scribe-1.3.2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ThejaSwarup/Downloads/slf4j-1.7.7/slf4j-1.7.7/slf4j-api-1.7.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ThejaSwarup/Downloads/slf4j-1.7.7/slf4j-1.7.7/slf4j-nop-1.7.7.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ThejaSwarup/Downloads/guava-18.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ThejaSwarup/Downloads/mahout-math-0.9.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ThejaSwarup/Downloads/commons-math3-3.3.jar"/>
+	<classpathentry kind="lib" path="C:/Users/ThejaSwarup/Downloads/mahout-core-0.9.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

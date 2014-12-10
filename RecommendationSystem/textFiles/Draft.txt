@@ -11,3 +11,186 @@ https://mahout.apache.org/users/recommender/recommender-documentation.html
 
 2. User based approach:
 
+---------------------------------------------------------Home------------------------------------------------------------------------------
+Introduction:
+
+What is this website?
+This website serves as documentation website for IDS 594 - Special Topics in Big Data Analysis taught by Professor Kupeng Zhang at University of Illinois, Chicago
+
+The code for the project can be found on my GitHub.(https://github.com/freelancer-recommendation/freelancer-recommendation.github.io)
+
+What is the Project about?
+The project implements a Recommendation System for the data crawled from https://www.freelancer.com/
+
+What is freelancer.com?
+Freelancer is a marketplace where employers and employees are able to find each other. The site allows employers to post work to get done. Anybody is then able to offer quotes to complete the project, upon which point the original employer is able to award the work. (from Wikipedia)
+
+Motivation:
+
+Why does freelancer.com need a Recommendation System?
+Freelancer is one of the oldest and largest sites, claiming roughly two million employers and workers 
+from 247 different geographic regions and with close to 6,850,000 projects posted on the site since 2001.
+I chose Freelancer because the site offers an open API for querying information about past jobs and users.
+The more detailed information on API endpoints and how data extraction is done is explained in Data section of this website. Additional details can be found on company's page here(https://www.freelancer.com/about). The following figure gives a rough idea of traffic on freelancer.com
+
+----------------------------------Insert freelancerStats-------------------------------
+
+With almost 5000 projects being posted every day and such a huge base of available freelancers, it would be really great if we can do the following.
+
+1. Suggest related projects to a freelancer
+2. Suggest top freelancers to the company which posts the project
+
+Doing this will save a lot of time for both freelancers in searching for related projects and also for companies in searching for freelancers who can finish their project.
+
+Goal and Description of my problem:
+
+The goal of my project is to implement Recommendation System which addresses the 2 problems I discussed earlier - Recommend Projects to freelancer and Recommend freelancer for a project.
+
+Boundary/Limiting conditions?
+I have chosen to recommend only top 5 results in both the cases. Recommend top 5 freelancers to a project and recommend top 5 projects to a freelancer
+
+Approaches:
+I have implemented 2 different approaches to achieve my goal.
+
+Approach 1: Content Based Filtering
+Definition: Content-based filtering methods are based on a description of the item and a profile of the user’s preference. In other words, these algorithms try to recommend items that are similar to those that a user liked in the past (or is examining in the present). In particular, various candidate items are compared with items previously rated by the user and the best-matching items are recommended.
+
+For my project I have implemented 3 types of algorithms for Content Based Approach
+1. Recommend Projects to Freelancer using Content Based Filtering
+2. Recommend Freelancer against Project using Content Based Filtering
+3. Recommend Project to a new freelancer
+
+Approach 2: Collaborative Filtering Approach
+Definition: Collaborative filtering methods are based on collecting and analyzing a large amount of information on users’ behaviors, activities or preferences and predicting what users will like based on their similarity to other users. All the data sets are implicit data collections.
+
+For my project I have implemented
+1. Item Based Recommendation and
+2. User Based Recommendation
+
+The detailed description of algorithms is explained in implementation page
+
+--------------------------------------------------------Data-----------------------------------------------------------------
+
+While writing algorithms for recommending is one task, the other major challenge for the whole project is collection of data.
+
+How is the data collected?
+The API endpoint provided by freelancer.com is very good and gives us an option for collecting all the different kinds of data. The API endpoint is available at http://developer.freelancer.com/ and this wiki page explains how to use the API. The following are steps I used to crawl the website.
+1. Registered my application at http://developer.freelancer.com/articles/r/e/g/Register.html to get access to freelancer developer API
+2. Obtained a Token and Secret which are used to access the API. The below is pictorial representation of same.
+---------------------------------------Attach API image----------------------------------------------------
+3. Use the API guide lines available at https://www.freelancer.com/affiliate-api.html#APIcalls to fetch required data
+
+What format is the data collected?
+I have collected about 2GB of data and it is available at https://github.com/freelancer-recommendation/freelancer-recommendation.github.io/tree/master/RecommendationSystem/JSONFiles on my project repository
+
+What type of data is collected?
+I collected Freelancer's successfully finished projects information and project details information. I have also collected freelancer skills information. What API calls are used for implementation is explained in Implementation page of the website
+
+Sample JSON Files:
+
+-----------------------Include pictures of JSON Files------------------------
+
+How is the data parsed?
+As all the data is collected in JSON format it became difficult for me to parse the data in Java. Hence I wrote some basic Javascript code which hits the JSON file and fetches only the information I require. After fetching required information I printed all those records in to an html file. From that html file I manually copied the content and pasted it in to text files. The text files obtained after this step are available in text files folder of the project.
+
+Since the data is very large I have curtailed it by running my data collection mechanism only for 3900 freelancers. These 3900 employers are randomly selected and the names of these freelancers can be found in RecommendationSystem/input folder with name randomFreelancers.txt
+
+What is the final data that my algorithm runs?
+After parsing the data using javascript, I have merged the content from multiple JSON's to single txt files for each type. All the text files used to run the recommendation system are available in RecommendationSystem/textFiles folder.
+
+Explanation of Files:
+
+SuccessfulBidsWithSkills.txt: This file is contains the list of projects that user has successfully bid with their names and skills that are required to finish that project 
+Sample record:
+Name:titanium009:
+a little web design->Anything Goes,Website Design
+Build a Website->Graphic Design,HTML,PHP,Website Design
+App Mockup->Blog Design,Graphic Design,Website Design,Wordpress
+
+ProjectAndSkills.txt: This file contains the projects that I have considered with id and top 5 skills that are required to finish it
+Sample Record:
+14@    Build a Website
+PHP,Website Design,Graphic Design,MySQL,HTML
+
+UserAndSkills.txt: This file contains freelancer details with their id and their skill set.
+Sample Record:
+44@LuisMiguel93,Adobe InDesign,Arts & Crafts,Business Cards,Graphic Design,Illustration,Illustrator,Infographics,Logo Design,Photoshop,Photoshop Design,Poster Design,Print,T-Shirts,Typography
+
+Challenges Faced:
+1. Data parsing became very tough on huge volumes of data and thus picked total of 9721 Projects and 3900 freelancers for final consideration.
+2. Data of few freelancers is not retrieved in some cases. When investigated further I found these accounts are deleted or currently inactive.Thus out of 3900 freelancers only 3166 are finalized because of closed/deleted accounts
+3. Java programming for parsing didn't help much thus I have to shift to javascript
+4. Most of the data retrieved had huge volumes of unrelated information in it. The JSON object is so big that it has almost 100 properties in it and it took time to select which properties I need.
+5. Formatting JSON in to human readable format couldn't be achieved.
+6. API key limitation - API endpoint allowed only 180 calls per hour. After requesting they increased it to 180 per minute
+7. Collaborative Filtering Algorithms couldn't give all the recommendations because of limited data we considered. It would have yielded better results with more data
+
+--------------------------------------------------------------Implementation----------------------------------------------------
+I have implemented 2 different approaches to achieve my goal.
+
+1. Content Based Filtering
+
+This is available in /RecommendationSystem/src/com/IDS594/ContentBasedAlgorithms folder
+
+1. RecommendFreelancer.java recommends top 5 freelancers for each project and also provides their score 1 being a perfect match.
+The logical explanation of this program is as below:
+1. Read freelancer data and project data into a 1d Array
+2. Parse the file as required while writing content into the array
+3. While populating these also populate Project_Skill matrix and User_Skill matrix which stores skills required for projects and skills of user respectively.
+4. Both project_Skill_Matrix and user_Skill_Matrix are 2D arrays thus store skills for each project and freelancer.
+5. Now store skills that are required for a project in to a variable and find if project skills and user skill matches and if so increment the value. 
+6. Compute value/Required_Score. Required_Score is all skills required for finishing project
+7. If score array has a value that is less than the value we got in step 6 insert the obtained value and also add it to recommendation array.
+8. These steps are done for all the users and at the end all projects are recommended top freelancers.
+
+2. RecommendProject.java recommends top 5 projects for each freelancer and also provides their score 1 being a perfect match. The logical explanation is similar to the previous case with just this time showing projects instead of freelancers.
+
+3.RecommendProjectForNewUser: This program interactively takes a new user and his job skills and then recommends top 5 projects to him depending on the data it has.
+
+2. Collaborative Filtering Algorithms:
+
+The collaborative Filtering is implemented using Apache Mahout's Taste library.
+Detailed steps on how to use this library can be found at https://mahout.apache.org/users/recommender/recommender-documentation.html
+
+I have implemented both UserBased and Item Based Recommendation.
+
+Logical Flow:
+1. Read the data model. A DataModel is the interface to information about user preferences. Data model is obtained by running ContentbasedEvaluation.java. This data model contains the user id and the bids that he had bid successfully
+2. Using ItemSimilarity class find similarity on the datamodel
+3. Use GenericItemBasedRecommender on datamodel and similarities obtained on step 1 and 2
+4. Get recommendation list for each item and display as required
+
+For User Based Recommendation the flow is similar with one change. After finding similarity we also use UserNeighborhood class to define number of nearest neighbours. This value is then given to recommender and thus gives recommendation accordingly.
+
+How to Run Programs:
+
+1. Start with contentBasedAlgorithms - Run any of the program as per your wish and you should see the output shown in console or written to a text file and then stored in RecommendationSystem/output/ folder.The output text files are named accordingly so that it is easy to understand.
+RecommendFreelancer--->RecommendFreelancer_ContentBased.txt
+RecommendProject--->RecommendProject_ContentBased.txt
+RecommendProjectForNewUser--->Interactive output on console
+
+2.Go to RecommendationSystem/src/com/IDS594/Evaluation/  folder and then run ContentBasedEvaluation.java This will output following files
+FreelancerNames_For_CF.txt
+ProjectNames_For_CF.txt
+SkillNames_For_CF.txt
+these are used for reaading data in Collaborative filtering algorithms to save some execution time
+
+3. Now go to RecommendationSystem/src/com/IDS594/CollaborativeFilteringAlgorithms and execute any of required algorithms. The output are stored in to output/CF_ItemBasedRecommender_Result.txt and output/CF_UserBasedRecommender_Result.txt files. 
+
+Experiment Results:
+
+The Recommendation system implemented will definitely save time for both freelancers as well as project owners if implemented.
+
+Content Based Evaluations:
+In order to check if the system I implemented is better, I tried writing some Evaluation Scripts in Java. I basically tried to get Precision and Recall Values for the recommendations shown. These output can be shown in ContentBasedEvaluation_Result.txt file. It has Recall and Precision values for all the recommendation shown. The Avgerage Precision: 0.0031153327516459106 and Avgerage Recall: 0.005441421432537477 is shown in ContentBasedEvaluation_Result.txt
+
+Collaborative Filtering Evaluations:
+In RecommendationSystem/src/com/IDS594/Evaluation/ folder you can find IRStats.java file which basically computes precision and recall values for the data recommended. This is shown in system console.
+
+Thoughts on Inferences:
+With the limited data available the recommendations shown are quite reliable and seems fine. I did manual testing for some random projects and freelancers and the data seems meaningful. But if given more computing power and more data the CF algorithm would have outperformed and would have yielded more recommendations than it shows now.
+
+
+
+
+
