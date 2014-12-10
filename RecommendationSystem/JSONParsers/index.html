@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <title>Sample JSON Parser</title>
+    <script>
+        var data; // a global
+        $.getJSON( "data/freelancerSkills.json", function( data ) {
+            var items = [];
+            $.each( data.freelancerArray, function(index) {
+                if(typeof data.freelancerArray[index].errors === 'undefined' ){
+                    items.push( (index+1)+'.'+data.freelancerArray[index].profile.username+'->'+ data.freelancerArray[index].profile.jobs+'<br>' );
+                }
+            });
+
+            $( "<ul/>", {
+                "class": "my-new-list",
+                html: items
+            }).appendTo( "body" );
+        });
+    </script>
+</head>
+<body>
+    <diV id="content">
+
+    </diV>
+</body>
+</html>
