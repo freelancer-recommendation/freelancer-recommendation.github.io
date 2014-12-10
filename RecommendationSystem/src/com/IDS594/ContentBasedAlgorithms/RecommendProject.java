@@ -144,7 +144,6 @@ public class RecommendProject {
 					if(val != max_limit - 1){
 						result.write("Project" + recommendation[val] + "(" +projectMatrix[recommendation[val]] + ")[" + scores[val] + "], ");
 					}
-					//Remove "," for last result
 					else{
 						result.write("Project" + recommendation[val] + "(" +projectMatrix[recommendation[val]] + ")[" + scores[val] + "] ");
 					}
