@@ -45,7 +45,7 @@ public class GetSuccessfulProjects {
 	//write content to a JSON file
 	private static void writeJSONFile(JSONObject freelancerSkills) throws IOException{
 		
-		FileWriter file = new FileWriter("JSONFiles//freelancerInfo//freelancerFinishedJobs2401-2500.json");
+		FileWriter file = new FileWriter("JSONFiles//freelancerFinishedJobs2401-2500.json");
 		file.write(freelancerSkills.toString());
 		file.flush();
 		file.close();

@@ -26,7 +26,7 @@ public class RecommendFreelancer {
 			//Read content
 			BufferedReader freelancerFile = new BufferedReader(new FileReader(freelancerData));
 			BufferedReader projectFile = new BufferedReader(new FileReader(projectData));
-			String output = "output/RecommendFreelancer_ContentBased";
+			String output = "output/RecommendFreelancer_ContentBased.txt";
 			BufferedWriter result = new BufferedWriter(new FileWriter(output));
 			int projectId = 0;
 			//From the txt files generated into textfiles folder separate the content for the matrix

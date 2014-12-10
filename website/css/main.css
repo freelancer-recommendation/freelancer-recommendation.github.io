@@ -7,7 +7,7 @@
 
 body {
   background: #fff;
-  font-family: 'Open Sans', sans-serif;
+  font-family: Arial;
   color:#4e4e4e;
   line-height: 22px;
 }
@@ -19,13 +19,12 @@ h4,
 h5,
 h6 {
   font-weight: 600; 
-  font-family: 'Open Sans', sans-serif;
+  font-family: Arial;
   color:#4e4e4e;
 }
 
 h1{
   font-size: 36px;
-  color:#fff;
 }
 
 h2{

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>Portfolio | Corlate</title>
+    <title>IDS-594 Report</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/font-awesome.min.css" rel="stylesheet">
     <link href="css/prettyPhoto.css" rel="stylesheet">
@@ -29,24 +29,14 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-6 col-xs-4">
-                        <div class="top-number"><p><i class="fa fa-phone-square"></i>  +0123 456 70 90</p></div>
+                        <div class="top-number"><p style="font-size: large;" align="left"><b> IDS 594 Project Report</b></p></div>
                     </div>
                     <div class="col-sm-6 col-xs-8">
-                       <div class="social">
+                        <div class="social">
                             <ul class="social-share">
-                                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
-                                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
-                                <li><a href="#"><i class="fa fa-linkedin"></i></a></li> 
-                                <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-                                <li><a href="#"><i class="fa fa-skype"></i></a></li>
+                                <li style="color: #ffffff">Find me on    <a href="https://github.com/freelancer-recommendation/freelancer-recommendation.github.io"><img src="images/github.gif"></a></li>
                             </ul>
-                            <div class="search">
-                                <form role="form">
-                                    <input type="text" class="search-form" autocomplete="off" placeholder="Search">
-                                    <i class="fa fa-search"></i>
-                                </form>
-                           </div>
-                       </div>
+                        </div>
                     </div>
                 </div>
             </div><!--/.container-->
@@ -61,16 +51,15 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="index.html"><img src="images/logo.PNG" alt="logo"></a>
+                    <a class="navbar-brand" href="index.html"><img src="images/logo.jpg" alt="logo"></a>
                 </div>
                 
                 <div class="collapse navbar-collapse navbar-right">
                     <ul class="nav navbar-nav">
                         <li><a href="index.html">Home</a></li>
                         <li><a href="data.html">Data</a></li>
-                        <li  class="active"><a href="implementation.html">Implementation</a></li>
-                        <li><a href="inference.html">Inference</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li  class="active"><a href="implementation.html">Implementation and Inference</a></li>
+                        <li><a href="contact.html">About Me</a></li>
                     </ul>
                 </div>
             </div><!--/.container-->
@@ -80,206 +69,160 @@
     <section id="portfolio">
         <div class="container">
             <div class="center">
-               <h2>Portfolio</h2>
-               <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut <br> et dolore magna aliqua. Ut enim ad minim veniam</p>
+               <h2>Implementation</h2>
             </div>
-        
-
-            <ul class="portfolio-filter text-center">
-                <li><a class="btn btn-default active" href="#" data-filter="*">All Works</a></li>
-                <li><a class="btn btn-default" href="#" data-filter=".bootstrap">Creative</a></li>
-                <li><a class="btn btn-default" href="#" data-filter=".html">Photography</a></li>
-                <li><a class="btn btn-default" href="#" data-filter=".wordpress">Web Development</a></li>
-            </ul><!--/#portfolio-filter-->
-
             <div class="row">
-                <div class="portfolio-items">
-                    <div class="portfolio-item apps col-xs-12 col-sm-4 col-md-3">
-                        <div class="recent-work-wrap">
-                            <img class="img-responsive" src="images/portfolio/recent/item1.png" alt="">
-                            <div class="overlay">
-                                <div class="recent-work-inner">
-                                    <h3><a href="#">Business theme</a></h3>
-                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
-                                    <a class="preview" href="images/portfolio/full/item1.png" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
-                                </div> 
-                            </div>
+                <div>
+                    <div>
+                        <div>
+                            <h2>Content Based Filtering</h2>
+                            <h3>
+                                <p>Implementation is available at <a href="https://github.com/freelancer-recommendation/freelancer-recommendation.github.io/tree/master/RecommendationSystem/src/com/IDS594/ContentBasedAlgorithms"><b>/RecommendationSystem/src/com/IDS594/ContentBasedAlgorithms</b></a> folder</p>
+                                <p><b>RecommendFreelancer.java</b> recommends top 5 freelancers for each project and also provides their score 1 being a perfect match</p>
+                                <p>The logical explanation of this program is as below:
+                                    <ul>
+                                        <li>
+                                            Read freelancer data and project data into a 1d Array
+                                        </li>
+                                        <li>Parse the file as required while writing content into the array</li>
+                                        <li>While populating these also populate Project_Skill matrix and User_Skill matrix which stores skills required for projects and skills of user respectively</li>
+                                        <li>Both project_Skill_Matrix and user_Skill_Matrix are 2D arrays thus store skills for each project and freelancer</li>
+                                        <li>Now store skills that are required for a project in to a variable and find if project skills and user skill matches and if so increment the value</li>
+                                        <li>Compute value/Required_Score. Required_Score is all skills required for finishing project</li>
+                                        <li>If score array has a value that is less than the value we got in step 6 insert the obtained value and also add it to recommendation array</li>
+                                        <li>These steps are done for all the users and at the end all projects are recommended top freelancers</li>
+                                    </ul>
+
+                                </p>
+                                <p><b>RecommendProject.java</b> recommends top 5 projects for each freelancer and also provides their score 1 being a perfect match. The logical explanation is similar to the previous case with just this time showing projects instead of freelancers</p>
+                                <p><b>RecommendProjectForNewUser.java</b> This program interactively takes a new user and his job skills and then recommends top 5 projects to him depending on the data it has</p>
+                            </h3>
                         </div>
-                    </div><!--/.portfolio-item-->
+                        <div>
+                            <h2>Collaborative Filtering Algorithms</h2>
+                            <h3>
+                                <p>Implementation is available at <a href="https://github.com/freelancer-recommendation/freelancer-recommendation.github.io/tree/master/RecommendationSystem/src/com/IDS594/CollaborativeFilteringAlgorithms"><b>/RecommendationSystem/src/com/IDS594/CollaborativeFilteringAlgorithms</b></a> folder</p>
+                                <p>The collaborative Filtering is implemented using Apache Mahout's Taste library</p>
+                                <p>Detailed steps on how to use this library can be found <a href="https://mahout.apache.org/users/recommender/recommender-documentation.html">here</a></p>
+                                <p>I have implemented both UserBased and Item Based Recommendation</p>
+                                <p>The logical explanation of this program is as below:
+                                <ul>
+                                    <li>
+                                        Read the data model. A DataModel is the interface to information about user preferences. Data model is obtained by running ContentbasedEvaluation.java. This data model contains the user id and the bids that he had bid successfully
+                                    </li>
+                                    <li>Using ItemSimilarity class find similarity on the datamodel</li>
+                                    <li>Use GenericItemBasedRecommender on datamodel and similarities obtained on step 1 and 2</li>
+                                    <li>Get recommendation list for each item and display as required</li>
+                                </ul>
 
-                    <div class="portfolio-item joomla bootstrap col-xs-12 col-sm-4 col-md-3">
-                        <div class="recent-work-wrap">
-                            <img class="img-responsive" src="images/portfolio/recent/item2.png" alt="">
-                            <div class="overlay">
-                                <div class="recent-work-inner">
-                                    <h3><a href="#">Business theme</a></h3>
-                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
-                                    <a class="preview" href="images/portfolio/full/item2.png" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
-                                </div> 
-                            </div>
-                        </div>          
-                    </div><!--/.portfolio-item-->
-
-                    <div class="portfolio-item bootstrap wordpress col-xs-12 col-sm-4 col-md-3">
-                        <div class="recent-work-wrap">
-                            <img class="img-responsive" src="images/portfolio/recent/item3.png" alt="">
-                            <div class="overlay">
-                                <div class="recent-work-inner">
-                                    <h3><a href="#">Business theme</a></h3>
-                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
-                                    <a class="preview" href="images/portfolio/full/item3.png" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
-                                </div> 
-                            </div>
-                        </div>        
-                    </div><!--/.portfolio-item-->
-
-                    <div class="portfolio-item joomla wordpress apps col-xs-12 col-sm-4 col-md-3">
-                        <div class="recent-work-wrap">
-                            <img class="img-responsive" src="images/portfolio/recent/item4.png" alt="">
-                            <div class="overlay">
-                                <div class="recent-work-inner">
-                                    <h3><a href="#">Business theme</a></h3>
-                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
-                                    <a class="preview" href="images/portfolio/full/item4.png" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
-                                </div> 
-                            </div>
-                        </div>           
-                    </div><!--/.portfolio-item-->
-          
-                    <div class="portfolio-item joomla html bootstrap col-xs-12 col-sm-4 col-md-3">
-                        <div class="recent-work-wrap">
-                            <img class="img-responsive" src="images/portfolio/recent/item5.png" alt="">
-                            <div class="overlay">
-                                <div class="recent-work-inner">
-                                    <h3><a href="#">Business theme</a></h3>
-                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
-                                    <a class="preview" href="images/portfolio/full/item5.png" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
-                                </div> 
-                            </div>
-                        </div>      
-                    </div><!--/.portfolio-item-->
-
-                    <div class="portfolio-item wordpress html apps col-xs-12 col-sm-4 col-md-3">
-                        <div class="recent-work-wrap">
-                            <img class="img-responsive" src="images/portfolio/recent/item6.png" alt="">
-                            <div class="overlay">
-                                <div class="recent-work-inner">
-                                    <h3><a href="#">Business theme</a></h3>
-                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
-                                    <a class="preview" href="images/portfolio/full/item6.png" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
-                                </div> 
-                            </div>
-                        </div>         
-                    </div><!--/.portfolio-item-->
-
-                    <div class="portfolio-item wordpress html col-xs-12 col-sm-4 col-md-3">
-                        <div class="recent-work-wrap">
-                            <img class="img-responsive" src="images/portfolio/recent/item7.png" alt="">
-                            <div class="overlay">
-                                <div class="recent-work-inner">
-                                    <h3><a href="#">Business theme</a></h3>
-                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
-                                    <a class="preview" href="images/portfolio/full/item7.png" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
-                                </div> 
-                            </div>
-                        </div>          
-                    </div><!--/.portfolio-item-->
-
-                    <div class="portfolio-item wordpress html bootstrap col-xs-12 col-sm-4 col-md-3">
-                        <div class="recent-work-wrap">
-                            <img class="img-responsive" src="images/portfolio/recent/item8.png" alt="">
-                            <div class="overlay">
-                                <div class="recent-work-inner">
-                                    <h3><a href="#">Business theme</a></h3>
-                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority</p>
-                                    <a class="preview" href="images/portfolio/full/item8.png" rel="prettyPhoto"><i class="fa fa-eye"></i> View</a>
-                                </div> 
-                            </div>
-                        </div>          
-                    </div><!--/.portfolio-item-->
-                </div>
-            </div>
+                                </p>
+                                <p>For User Based Recommendation the flow is similar with one change. After finding similarity we also use UserNeighborhood class to define number of nearest neighbours. This value is then given to recommender and thus gives recommendation accordingly</p>
+                            </h3>
+                        </div>
+                    </div><!--/.col-md-4-->
+                </div><!--/.services-->
+            </div><!--/.row-->
         </div>
     </section><!--/#portfolio-item-->
-    
-    <section id="bottom">
-        <div class="container wow fadeInDown" data-wow-duration="1000ms" data-wow-delay="600ms">
-            <div class="row">
-                <div class="col-md-3 col-sm-6">
-                    <div class="widget">
-                        <h3>Company</h3>
-                        <ul>
-                            <li><a href="#">About us</a></li>
-                            <li><a href="#">We are hiring</a></li>
-                            <li><a href="#">Meet the team</a></li>
-                            <li><a href="#">Copyright</a></li>
-                            <li><a href="#">Terms of use</a></li>
-                            <li><a href="#">Privacy policy</a></li>
-                            <li><a href="#">Contact us</a></li>
-                        </ul>
-                    </div>    
-                </div><!--/.col-md-3-->
 
-                <div class="col-md-3 col-sm-6">
-                    <div class="widget">
-                        <h3>Support</h3>
-                        <ul>
-                            <li><a href="#">Faq</a></li>
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="#">Forum</a></li>
-                            <li><a href="#">Documentation</a></li>
-                            <li><a href="#">Refund policy</a></li>
-                            <li><a href="#">Ticket system</a></li>
-                            <li><a href="#">Billing system</a></li>
-                        </ul>
-                    </div>    
-                </div><!--/.col-md-3-->
-
-                <div class="col-md-3 col-sm-6">
-                    <div class="widget">
-                        <h3>Developers</h3>
-                        <ul>
-                            <li><a href="#">Web Development</a></li>
-                            <li><a href="#">SEO Marketing</a></li>
-                            <li><a href="#">Theme</a></li>
-                            <li><a href="#">Development</a></li>
-                            <li><a href="#">Email Marketing</a></li>
-                            <li><a href="#">Plugin Development</a></li>
-                            <li><a href="#">Article Writing</a></li>
-                        </ul>
-                    </div>    
-                </div><!--/.col-md-3-->
-
-                <div class="col-md-3 col-sm-6">
-                    <div class="widget">
-                        <h3>Our Partners</h3>
-                        <ul>
-                            <li><a href="#">Adipisicing Elit</a></li>
-                            <li><a href="#">Eiusmod</a></li>
-                            <li><a href="#">Tempor</a></li>
-                            <li><a href="#">Veniam</a></li>
-                            <li><a href="#">Exercitation</a></li>
-                            <li><a href="#">Ullamco</a></li>
-                            <li><a href="#">Laboris</a></li>
-                        </ul>
-                    </div>    
-                </div><!--/.col-md-3-->
+    <section id="howTo">
+        <div class="container">
+            <div class="center">
+                <h2>How to Run Programs</h2>
             </div>
+            <div class="row">
+                <div>
+                    <div>
+                        <div>
+                            <h3>
+                                <p>Start with contentBasedAlgorithms - Run any of the program as per your wish and you should see the output shown in console or written to a text file and then stored in <a href="https://github.com/freelancer-recommendation/freelancer-recommendation.github.io/tree/master/RecommendationSystem/output"><b>RecommendationSystem/output/ </b></a>folder.The output text files are named accordingly so that it is easy to understand
+                                    <ul>
+                                        <li>RecommendFreelancer--->RecommendFreelancer_ContentBased.txt</li>
+                                        <li>RecommendProject--->RecommendProject_ContentBased.txt</li>
+                                        <li>RecommendProjectForNewUser--->Interactive output on console</li>
+                                    </ul>
+                                </p>
+                                <p>Go to <a href="https://github.com/freelancer-recommendation/freelancer-recommendation.github.io/tree/master/RecommendationSystem/src/com/IDS594/Evaluation"><b>RecommendationSystem/src/com/IDS594/Evaluation </b></a>folder and then run ContentBasedEvaluation.java This will output following files
+                                    <ul>
+                                        <li>FreelancerNames_For_CF.txt</li>
+                                        <li>ProjectNames_For_CF.txt</li>
+                                        <li>SkillNames_For_CF.txt</li>
+                                    </ul>
+                                these are used for reading data in Collaborative filtering algorithms to save some execution time
+                                </p>
+                                <p>Now go to <a href="https://github.com/freelancer-recommendation/freelancer-recommendation.github.io/tree/master/RecommendationSystem/src/com/IDS594/CollaborativeFilteringAlgorithms"><b>RecommendationSystem/src/com/IDS594/CollaborativeFilteringAlgorithms </b></a> folder and execute any of required algorithms. The output are stored in to output/CF_ItemBasedRecommender_Result.txt and output/CF_UserBasedRecommender_Result.txt files</p>
+                            </h3>
+                        </div>
+                    </div><!--/.col-md-4-->
+                </div><!--/.services-->
+            </div><!--/.row-->
         </div>
-    </section><!--/#bottom-->
+    </section><!--/#portfolio-item-->
+
+    <section id="results">
+        <div class="container">
+            <div class="center">
+                <h2>Inferences and Experiment Results</h2>
+            </div>
+            <div class="row">
+                <div>
+                    <div>
+                        <div>
+                            <h3>
+                                <p>The Recommendation system implemented will definitely save time for both freelancers as well as project owners if implemented</p>
+                            </h3>
+                        </div>
+                        <div>
+                            <h2>Content Based Evaluations:</h2>
+                            <h3>
+                                <p>In order to check if the system I implemented is better, I tried writing some Evaluation Scripts in Java</p>
+                                <p>I basically tried to get Precision and Recall Values for the recommendations shown. These output can be shown in ContentBasedEvaluation_Result.txt file</p>
+                                <p>It has Recall and Precision values for all the recommendation shown. The Avgerage Precision: 0.0031153327516459106 and Avgerage Recall: 0.005441421432537477 is shown in ContentBasedEvaluation_Result.txt</p>
+                            </h3>
+                        </div>
+                        <div>
+                            <h2>Collaborative Filtering Evaluations:</h2>
+                            <h3>
+                                <p>In <a href="https://github.com/freelancer-recommendation/freelancer-recommendation.github.io/tree/master/RecommendationSystem/src/com/IDS594/Evaluation"><b>RecommendationSystem/src/com/IDS594/Evaluation/</b></a> folder you can find IRStats.java file which basically computes precision and recall values for the data recommended. This is shown in system console</p>
+                            </h3>
+                        </div>
+                    </div><!--/.col-md-4-->
+                </div><!--/.services-->
+            </div><!--/.row-->
+        </div>
+    </section><!--/#portfolio-item-->
+
+    <section id="results">
+        <div class="container">
+            <div class="center">
+                <h2>Thoughts on Inferences</h2>
+            </div>
+            <div class="row">
+                <div>
+                    <div>
+                        <div>
+                            <h3>
+                                <p>With the limited data available the recommendations shown are quite reliable and seems fine. I did manual testing for some random projects and freelancers and the data seems meaningful</p>
+                                <p>But if given more computing power and more data the CF algorithm would have outperformed and would have yielded more recommendations than it shows now</p>
+                            </h3>
+                        </div>
+                    </div><!--/.col-md-4-->
+                </div><!--/.services-->
+            </div><!--/.row-->
+        </div>
+    </section><!--/#portfolio-item-->
 
     <footer id="footer" class="midnight-blue">
         <div class="container">
             <div class="row">
                 <div class="col-sm-6">
-                    &copy; 2013 <a target="_blank" href="http://shapebootstrap.net/" title="Free Twitter Bootstrap WordPress Themes and HTML templates">ShapeBootstrap</a>. All Rights Reserved.
+                    Source Code on <a href="https://github.com/freelancer-recommendation/freelancer-recommendation.github.io">GitHub</a>
                 </div>
                 <div class="col-sm-6">
                     <ul class="pull-right">
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">About Us</a></li>
-                        <li><a href="#">Faq</a></li>
-                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="https://www.facebook.com/swarup.theja"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="https://twitter.com/swarup_theja"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="https://linkedin.com/pub/phani-theja-swarup-v/24/222/5/"><i class="fa fa-linkedin"></i></a></li>
                     </ul>
                 </div>
             </div>

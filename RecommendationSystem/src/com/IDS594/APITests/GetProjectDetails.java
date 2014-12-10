@@ -40,7 +40,7 @@ public class GetProjectDetails {
 			//write content to a JSON file
 			private static void writeJSONFile(JSONObject freelancerSkills) throws IOException{
 				
-				FileWriter file = new FileWriter("JSONFiles//projectsInfo//projectDetails9501-10500.json");
+				FileWriter file = new FileWriter("JSONFiles//projectDetails9501-10500.json");
 				file.write(freelancerSkills.toString());
 				file.flush();
 				file.close();

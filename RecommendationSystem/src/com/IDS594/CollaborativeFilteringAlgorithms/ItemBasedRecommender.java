@@ -40,7 +40,7 @@ public class ItemBasedRecommender {
 			}
 			//Define the data model
 			DataModel dataModel = new FileDataModel(new File(evaluatedFile));
-			//PearsonCorrelation Similarity
+			//LogLikelihoodSimilarity Similarity
 			ItemSimilarity itemSimilarity = new LogLikelihoodSimilarity(dataModel);
 			//Use Recommender here
 			GenericItemBasedRecommender recommender = new GenericItemBasedRecommender(dataModel, itemSimilarity);
